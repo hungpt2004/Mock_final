@@ -3,7 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import '../cart/cart_event.dart';
 import '../cart/cart_state.dart';
-import '../model/cart.dart';
+import 'cart.dart';
 import 'package:http/http.dart' as http;
 
 import '../model/order.dart';

@@ -2,7 +2,7 @@ class Product {
   final int id;
   final String name;
   final int price;
-  final int quantity;
+  int quantity;
   final String description;
   final String manufacturer;
   final String category;

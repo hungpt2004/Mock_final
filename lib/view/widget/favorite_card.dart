@@ -1,12 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mock_final/bloc/favourite/favorite_bloc.dart';
 import 'package:mock_final/bloc/favourite/favorite_state.dart';
 import 'package:mock_final/theme/style/style_appbar.dart';
-import 'package:mock_final/theme/style/style_space.dart';
-
-import '../../theme/style/style_color.dart';
 import '../../theme/style/style_text.dart';
 
 class FavoriteCard extends StatefulWidget {
@@ -46,7 +42,7 @@ class _FavoriteCardState extends State<FavoriteCard> {
                         children: [
                           Expanded(
                             flex: 1,
-                            child: Container(
+                            child: SizedBox(
                               width: 100,
                               height: 100,
                               child: Padding(

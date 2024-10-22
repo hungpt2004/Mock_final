@@ -133,7 +133,7 @@ class _ProductCardState extends State<ProductCard> {
                                   loadingDetailsIndex == index),
                               child: loadingDetailsIndex == index
                                   ? StyleButton.loading()
-                                  : Icon(Icons.menu_outlined,color: StyleColor.darkBlueColor,size: 15,)
+                                  : const Icon(Icons.menu_outlined,color: StyleColor.darkBlueColor,size: 15,)
                             ),
                             ElevatedButton(
                               onPressed: () async {
@@ -144,7 +144,7 @@ class _ProductCardState extends State<ProductCard> {
                                   loadingCartIndex == index),
                               child: loadingCartIndex == index
                                   ? StyleButton.loading()
-                                  : Container(width: 20,height: 20,child: Image.asset("assets/images/cart.png"),)
+                                  : SizedBox(width: 20,height: 20,child: Image.asset("assets/images/cart.png"),)
                             ),
                           ],
                         ),

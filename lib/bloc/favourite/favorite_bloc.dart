@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mock_final/bloc/cart/cart_bloc.dart';
 import 'package:mock_final/bloc/favourite/favorite_state.dart';
 import 'package:mock_final/model/product.dart';
+import '../../theme/action/scaffold_msg.dart';
 import 'favorite_event.dart';
 import 'favorite_state.dart';
 
@@ -34,10 +35,12 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
 
   static void addFavorite(BuildContext context, Product product){
     context.read<FavoriteBloc>().add(AddFavorite(product: product));
+    showCustomSnackBar(context, "Add favorite successfully",isSuccess: true);
   }
 
   static void removeFavorite(BuildContext context, Product product){
     context.read<FavoriteBloc>().add(RemoveFavorite(productId: product.id));
+    showCustomSnackBar(context, "Remove favorite successfully",isSuccess: true);
   }
 
 }

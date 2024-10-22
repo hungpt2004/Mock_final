@@ -3,6 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mock_final/model/cart.dart';
+import 'package:mock_final/theme/action/scaffold_msg.dart';
 import '../../model/product.dart';
 import '../cart/cart_event.dart';
 import 'cart_state.dart';
@@ -61,10 +62,12 @@ class CartBloc extends Bloc<CartEvent, CartState> {
 
   static void addToCart(BuildContext context, Product product){
     context.read<CartBloc>().add(AddToCart(product: product));
+    showCustomSnackBar(context, "Add to cart successfully",isSuccess: true);
   }
 
   static void removeFromCart(BuildContext context, Product product){
     context.read<CartBloc>().add(RemoveFromCart(product: product));
+    showCustomSnackBar(context, "Remove cart successfully",isSuccess: true);
   }
 
   static void incrementQuantity(BuildContext context, Product product, CartItem cartItem){
@@ -72,11 +75,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       product.quantity--;
       context.read<CartBloc>().add(IncrementQuantity(product: product, quantity: cartItem.quantity + 1));
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Số lượng sản phẩm trong kho không đủ!'),
-        ),
-      );
+      showCustomSnackBar(context, "Not enough quantity",isSuccess: false);
     }
   }
 
@@ -85,11 +84,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       product.quantity++;
       context.read<CartBloc>().add(IncrementQuantity(product: product, quantity: cartItem.quantity - 1));
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Số lượng sản phẩm trong kho không đủ!'),
-        ),
-      );
+      showCustomSnackBar(context, "Not enough quantity",isSuccess: false);
     }
   }
 

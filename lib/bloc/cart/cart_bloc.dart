@@ -15,6 +15,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     on<AddToCart>(_onAddToCart);
     on<RemoveFromCart>(_onRemoveFromCart);
     on<IncrementQuantity>(_onIncrementQuantity);
+    on<ClearAll>(_onClearAll);
   }
 
   void _onAddToCart(AddToCart event, Emitter<CartState> emit) {
@@ -52,6 +53,10 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     emit(CartState(cartProducts: updatingProduct, totalPrice: _calculateTotalPrice(updatingProduct)));
   }
 
+  void _onClearAll(ClearAll event, Emitter<CartState> emit){
+    emit(CartState(cartProducts: [], totalPrice: 0));
+  }
+
   double _calculateTotalPrice(List<CartItem> cartItems){
     double total = 0;
     for(CartItem c in cartItems){
@@ -85,6 +90,15 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       context.read<CartBloc>().add(IncrementQuantity(product: product, quantity: cartItem.quantity - 1));
     } else {
       showCustomSnackBar(context, "Not enough quantity",isSuccess: false);
+    }
+  }
+
+  static void clearAll(BuildContext context, List<CartItem> cartItems){
+    if(cartItems.isNotEmpty){
+      context.read<CartBloc>().add(ClearAll());
+      showCustomSnackBar(context, "Clear all successfully",isSuccess: true);
+    } else {
+      showCustomSnackBar(context, "Not have any product",isSuccess: false);
     }
   }
 

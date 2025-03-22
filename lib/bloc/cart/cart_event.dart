@@ -18,3 +18,5 @@ class IncrementQuantity extends CartEvent{
 
   IncrementQuantity({required this.product, required this.quantity});
 }
+
+class ClearAll extends CartEvent {}
